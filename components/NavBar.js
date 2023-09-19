@@ -7,20 +7,34 @@ export default function NavBar() {
 
   return (
     <nav>
+      <img src="/vercel.svg" alt="vercel" />
       <Link href="/" legacyBehavior><a className={router.pathname === "/" ? "active" : ""}>Home</a></Link>
       <Link href="/about" legacyBehavior><a className={router.pathname === "/about" ? "active" : ""}>About</a></Link>
       <style jsx>{`
-        /* 이 스타일들은 NavBar 컴포넌트에 한정되어 유효함.
-          (=> NavBar를 가진 index 화면에서 active 클래스를 가진 요소가 있더라도 active 스타일이 적용되지 X)
-        */
         nav {
-          background-color: whitesmoke;
+          display: flex;
+          gap: 10px;
+          flex-direction: column;
+          align-items: center;
+          padding-top: 20px;
+          padding-bottom: 10px;
+          box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+            rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
         }
-        a {
-          text-decoration: none;
+        img {
+          max-width: 100px;
+          margin-bottom: 5px;
+        }
+        nav a {
+          font-weight: 600;
+          font-size: 18px;
         }
         .active {
-          color: dodgerblue;
+          color: tomato;
+        }
+        nav div {
+          display: flex;
+          gap: 10px;
         }
       `}</style>
     </nav>

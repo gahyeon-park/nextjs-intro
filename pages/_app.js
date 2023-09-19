@@ -5,7 +5,6 @@ export default function App({ Component, pageProps }) {
   return (
     <Layout>
       <Component {...pageProps} />
-      <footer>푸터</footer>
     </Layout>
   )
 }
