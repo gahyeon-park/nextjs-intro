@@ -9,7 +9,7 @@ export default function Home({ results }) {
       <Seo title="Home" />
       {results?.map(movie =>
         <div className="movie" key={movie.id}>
-          <img src={`https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`} alt={`${movie.title} poster`} />
+          <img src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`} alt={`${movie.title} poster`} />
           <h3>{movie.original_title}</h3>
         </div>)}
       <style jsx>{`
