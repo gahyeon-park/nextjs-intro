@@ -3,28 +3,15 @@ import Seo from "../components/Seo";
 
 const API_KEY = "c33cd4416575a2635f2ceaa5dec83b09";
 
-export default function Home() {
-  const [movies, setMovies] = useState([]);
-
-  useEffect(() => {
-    (async () => {
-      const { results } = await (await fetch(`/api/movies`)).json();
-      console.log(results);
-      setMovies(results);
-    })();
-  }, []);
-
-
+export default function Home({ results }) {
   return (
     <div className="container">
       <Seo title="Home" />
-      {!movies && <h2>Loading...</h2>}
-      {movies.map(movie =>
+      {results?.map(movie =>
         <div className="movie" key={movie.id}>
           <img src={`https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`} alt={`${movie.title} poster`} />
           <h3>{movie.original_title}</h3>
         </div>)}
-      <h1 className="active">Hi</h1>
       <style jsx>{`
         .container {
           display: grid;
@@ -48,4 +35,15 @@ export default function Home() {
       `}</style>
     </div>
   )
+}
+
+export async function getServerSideProps() {
+  // 여기 코드는 server에서 돌아감.
+  // 여기서 반환하는 값은 page에서 props로 받을 수 있음
+  const { results } = await (await fetch(`http://localhost:3000/api/movies`)).json();
+  return {
+    props: {
+      results,
+    }
+  }
 }
