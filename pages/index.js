@@ -8,14 +8,7 @@ const API_KEY = "c33cd4416575a2635f2ceaa5dec83b09";
 export default function Home({ results }) {
   const router = useRouter();
   const onClick = (id, title) => {
-    router.push({
-      pathname: `/movies/${id}`,
-      query: {
-        title: title
-      },
-    },
-      `/movies/${id}`,
-    );
+    router.push(`/movies/${title}/${id}`)
   }
 
   return (
@@ -25,14 +18,7 @@ export default function Home({ results }) {
         <div className="movie" key={movie.id} onClick={() => onClick(movie.id, movie.original_title)}>
           <img src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`} alt={`${movie.title} poster`} />
           <h3>
-            <Link href={{
-              pathname: `/movies/${movie.id}`,
-              query: {
-                title: movie.original_title
-              },
-            }}
-              as={`/movies/${movie.id}`}
-            >
+            <Link href={`/movies/${movie.original_title}/${movie.id}`}>
               {movie.original_title}
             </Link>
           </h3>
